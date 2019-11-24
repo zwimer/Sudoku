@@ -3,11 +3,16 @@ from math import sqrt
 from copy import deepcopy
 from IPython import embed
 
+# Import game board
 from board import Board
+
+# Import strategies
+sys.path.append(sys.path[0] + '/strategies/')
 from simple import Simple
 from missing import Missing
 from inline import InLine
 from twoline import TwoLine
+sys.path.pop()
 
 
 def init_pencil(board):
@@ -26,13 +31,13 @@ def solve(board):
             changed |= strat.loop()
 
 def main(_):
-    board = Board.load('board.txt')
+    board = Board.load(sys.path[0] + '/board.txt')
     init_pencil(board)
     def step():
         solve(board)
         board.printp()
     step()
-    board.save('improved.txt')
+    board.save(sys.path[0] + '/improved.txt')
     embed()
 
 if __name__ == '__main__':
