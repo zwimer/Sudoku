@@ -1,6 +1,12 @@
-from info import Info
+import sys
+
 from strategy import Strategy
 from utilities import intersect
+
+sys.path.append(sys.path[-1] + '/helpers/')
+from info import Info
+sys.path.pop()
+
 
 class Simple(Strategy):
     def apply(self):
